@@ -1,14 +1,13 @@
-/*
 package com.miguel.project.specialist.configuration;
 
-import com.miguel.project.specialist.model.Person;
-import com.miguel.project.specialist.services.PersonService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.miguel.project.specialist.model.Person;
+import com.miguel.project.specialist.services.PersonService;
 
 @Configuration
 public class ApplicationConfiguration implements CommandLineRunner {
@@ -31,4 +30,3 @@ public class ApplicationConfiguration implements CommandLineRunner {
         for(var person : list) personService.save(person);
     }
 }
-*/

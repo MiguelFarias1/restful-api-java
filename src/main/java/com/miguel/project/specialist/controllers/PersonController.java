@@ -1,17 +1,27 @@
 package com.miguel.project.specialist.controllers;
 
-import com.miguel.project.specialist.model.DTO.PersonDTO;
-import com.miguel.project.specialist.model.Person;
-import com.miguel.project.specialist.services.PersonService;
+import java.util.List;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.List;
+import com.miguel.project.specialist.model.Person;
+import com.miguel.project.specialist.model.DTO.PersonDTO;
+import com.miguel.project.specialist.services.PersonService;
 
 @RestController
 @RequestMapping("/api/v1/person")
+@Tag(name = "People", description = "People controller")
 public class PersonController {
 
     private final PersonService personService;
@@ -23,9 +33,7 @@ public class PersonController {
     @GetMapping(name = "findAll", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<PersonDTO>> findAll() {
 
-        var persons = personService.findAll();
-
-        var personsDTO = persons.stream().map(PersonDTO::new).toList();
+        var personsDTO = personService.findAll();
 
         return ResponseEntity.ok(personsDTO);
     }
@@ -42,9 +50,7 @@ public class PersonController {
 
         var update = personService.update(person);
 
-        var personDTO = new PersonDTO(update);
-
-        return ResponseEntity.ok(personDTO);
+        return ResponseEntity.ok(update);
     }
 
     @PostMapping(name = "create", produces = MediaType.APPLICATION_JSON_VALUE)

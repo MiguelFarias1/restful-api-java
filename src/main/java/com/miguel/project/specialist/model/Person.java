@@ -1,12 +1,19 @@
 package com.miguel.project.specialist.model;
 
-import jakarta.persistence.*;
+import java.io.Serializable;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
-
-import java.io.Serializable;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -20,7 +27,7 @@ public class Person implements Serializable {
     private Long id;
 
     @Column(length = 50)
-    @NotBlank
+    @NotBlank(message = "first name field cannot be empty!")
     @NotNull
     private String firstName;
 
